@@ -1,15 +1,19 @@
 package com.themgi.lsp.controller
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/hello")
-class HelloController {
+class HelloController(
+    @Value("\${welcome.message}")
+    private var welcomeMessage: String
+) {
 
     @GetMapping
     fun helloWorld(): String {
-        return "Welcome to the SPRING WORLD hehe"
+        return this.welcomeMessage
     }
 }
